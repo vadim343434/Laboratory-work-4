@@ -15,4 +15,4 @@ jobs:
       - name: Start JSON Linter
         run: |
           npm install -g @prantlf/jsonlint
-          jsonlint DataSchema.json
+          jsonlint DataSchemaModified.json
