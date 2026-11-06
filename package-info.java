@@ -1,0 +1,3 @@
+/**
+ * Arm Rehabilitation Assistant application.
+ */
