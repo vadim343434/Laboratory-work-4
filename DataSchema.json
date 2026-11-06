@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Arm Rehabilitation Assistant — параметри вправ",
+  "description": "Фізична схема локального JSON-файлу параметрів реабілітаційних вправ",
+  "type": "object",
+  "properties": {
+    "exercises": {
+      "type": "array",
+      "description": "Перелік доступних реабілітаційних вправ",
+      "items": {
+        "type": "object",
+        "description": "Реабілітаційна вправа та допустимі параметри руху",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Ідентифікатор вправи",
+            "pattern": "^EX-[0-9]{3}$",
+            "minLength": 6,
+            "maxLength": 6
+          },
+          "name": {
+            "type": "string",
+            "description": "Назва реабілітаційної вправи",
+            "pattern": "^[А-Яа-яІіЇїЄєҐґ\\s\\-]{3,80}$",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Допустимі параметри рухів руки",
+            "properties": {
+              "minAngle": {
+                "type": "number",
+                "description": "Мінімальний кут, градуси",
+                "minimum": 0,
+                "maximum": 180
+              },
+              "maxAngle": {
+                "type": "number",
+                "description": "Максимальний кут, градуси",
+                "minimum": 0,
+                "maximum": 180
+              },
+              "allowedSpeed": {
+                "type": "number",
+                "description": "Допустима швидкість руху",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "smoothnessThreshold": {
+                "type": "number",
+                "description": "Поріг плавності руху",
+                "minimum": 0,
+                "maximum": 1000
+              }
+            },
+            "required": [
+              "minAngle",
+              "maxAngle",
+              "allowedSpeed",
+              "smoothnessThreshold"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "identifier",
+          "name",
+          "parameters"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 100,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "exercises"
+  ],
+  "additionalProperties": false
+}
